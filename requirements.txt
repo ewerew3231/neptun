@@ -1,5 +1,5 @@
-spacy
-uk_core_news_sm
+spacy>=3.0.0,<4.0.0
+https://github.com/explosion/spacy-models/releases/download/uk_core_news_sm-3.7.0/uk_core_news_sm-3.7.0.tar.gz
 openai
 sentence-transformers
 scikit-learn
@@ -12,4 +12,5 @@ unidecode
 transformers
 deeppavlov
 langdetect
+python-dotenv
 python-dotenv
