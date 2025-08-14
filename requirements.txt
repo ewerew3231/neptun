@@ -1,0 +1,15 @@
+spacy
+uk_core_news_sm
+openai
+sentence-transformers
+scikit-learn
+flask
+gunicorn
+telethon
+aiohttp
+googlemaps
+unidecode
+transformers
+deeppavlov
+langdetect
+python-dotenv

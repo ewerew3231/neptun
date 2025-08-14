@@ -1,0 +1,7 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+*.log
+geocoding_cache.json
+opencage_cache.json
