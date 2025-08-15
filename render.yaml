@@ -5,11 +5,9 @@ services:
     buildCommand: |
       python -m pip install --upgrade pip
       pip install wheel==0.41.2 setuptools==68.0.0
-      pip install spacy==3.5.3
-      python -m spacy download uk_core_news_sm
       pip install numpy==1.21.6
       pip install -r requirements.txt
-      python install.py
+      python -m spacy download uk_core_news_sm
     startCommand: gunicorn wsgi:app --config gunicorn_config.py
     envVars:
       - key: PORT
