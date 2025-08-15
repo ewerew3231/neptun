@@ -36,7 +36,10 @@ from datetime import datetime, timedelta, timezone
 from flask import Flask, render_template, jsonify, request
 from telegram import Bot
 from telegram.ext import Application, Updater
+<<<<<<< HEAD
 from telethon import TelegramClient
+=======
+>>>>>>> a82b9bace76baff4a6697e5a3156dd3c22b94180
 import re
 import aiohttp
 import ssl
@@ -53,11 +56,14 @@ import random
 import functools
 from collections import defaultdict
 import subprocess
+<<<<<<< HEAD
 
 # Инициализация Telethon клиента
 API_ID = os.getenv('TELEGRAM_API_ID')
 API_HASH = os.getenv('TELEGRAM_API_HASH')
 client = TelegramClient('anon', API_ID, API_HASH)
+=======
+>>>>>>> a82b9bace76baff4a6697e5a3156dd3c22b94180
 from transformers import AutoTokenizer, AutoModelForTokenClassification, pipeline
 from deep_translator import GoogleTranslator
 import openai
