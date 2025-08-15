@@ -1,6 +1,6 @@
 --no-binary :all:
 --only-binary spacy,blis,thinc,cymem
-spacy==3.7.2
+spacy==3.8.7
 flask
 gunicorn
 telethon
