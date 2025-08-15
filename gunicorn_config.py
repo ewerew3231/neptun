@@ -4,18 +4,27 @@ import os
 # Привязка к порту из переменной окружения или 10000 по умолчанию
 bind = f"0.0.0.0:{os.getenv('PORT', '10000')}"
 
-# Количество рабочих процессов
-workers = multiprocessing.cpu_count() * 2 + 1
+# На Render используем фиксированное количество воркеров из-за ограничений
+workers = 4
+worker_class = 'sync'
 
-# Таймаут
+# Таймауты
 timeout = 120
-
-# Другие настройки
+graceful_timeout = 60
 keepalive = 5
+
+# Ограничения для стабильности
 max_requests = 1000
 max_requests_jitter = 50
+worker_connections = 1000
 
 # Логирование
 accesslog = '-'
 errorlog = '-'
 loglevel = 'info'
+access_log_format = '%({x-forwarded-for}i)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"'
+
+# Настройки для лучшей производительности
+worker_tmp_dir = '/dev/shm'
+preload_app = True
+forwarded_allow_ips = '*'
