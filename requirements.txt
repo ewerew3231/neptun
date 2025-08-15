@@ -13,3 +13,4 @@ transformers
 sentence-transformers
 scikit-learn
 python-dotenv
+deep-translator
