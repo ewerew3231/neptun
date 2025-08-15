@@ -2,14 +2,16 @@ services:
   - type: web
     name: neptun
     env: python
-    buildCommand: curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python3 - && /opt/poetry/bin/poetry config virtualenvs.create false && /opt/poetry/bin/poetry install --no-dev && pip install -r requirements.txt && python -m spacy download uk_core_news_sm
-    startCommand: gunicorn wsgi:app --config gunicorn_config.py
+    buildCommand: |
+      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+      bash miniconda.sh -b -p $HOME/miniconda
+      export PATH="$HOME/miniconda/bin:$PATH"
+      conda env create -f environment.yml
+      conda activate myenv
+      python -m spacy download uk_core_news_sm
+    startCommand: $HOME/miniconda/envs/myenv/bin/gunicorn wsgi:app --config gunicorn_config.py
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.10.8
       - key: PORT
         value: 10000
-      - key: PYTHON_VERSION
-        value: "3.10.8"
-      - key: POETRY_VERSION
-        value: "1.4.2"
+      - key: PYTHONPATH
+        value: $HOME/miniconda/envs/myenv/lib/python3.10/site-packages
