@@ -1,3 +1,5 @@
+import os
+
 # Центры областей Украины (можно расширять)
 OBLAST_CENTERS = {
     'черниговская': (51.4982, 31.2893),
@@ -1667,4 +1669,5 @@ def export_tracks():
 
 if __name__ == '__main__':
     # Запускаем Flask приложение на Render
-    app.run(host=HOST, port=PORT)
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)
