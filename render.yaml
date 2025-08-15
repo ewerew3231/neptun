@@ -4,11 +4,17 @@ services:
     env: python
     buildCommand: |
       python -m pip install --upgrade pip
-      pip install -r requirements.txt
+      pip install wheel==0.41.2 setuptools==68.0.0
+      pip install spacy==3.5.3
       python -m spacy download uk_core_news_sm
+      pip install numpy==1.21.6
+      pip install -r requirements.txt
+      python install.py
     startCommand: gunicorn wsgi:app --config gunicorn_config.py
     envVars:
       - key: PORT
         value: 10000
       - key: PYTHON_VERSION
         value: "3.10.8"
+      - key: PIP_DEFAULT_TIMEOUT
+        value: "100"
