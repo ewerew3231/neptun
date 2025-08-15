@@ -2,16 +2,12 @@ services:
   - type: web
     name: neptun
     env: python
-    buildCommand: |
-      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-      bash miniconda.sh -b -p $HOME/miniconda
-      export PATH="$HOME/miniconda/bin:$PATH"
-      conda env create -f environment.yml
-      conda activate myenv
-      python -m spacy download uk_core_news_sm
-    startCommand: $HOME/miniconda/envs/myenv/bin/gunicorn wsgi:app --config gunicorn_config.py
+    buildCommand: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && bash miniconda.sh -b -p $HOME/miniconda && export PATH="$HOME/miniconda/bin:$PATH" && conda init bash && source $HOME/.bashrc && conda env create -f environment.yml && source activate myenv && python -m spacy download uk_core_news_sm
+    startCommand: $HOME/miniconda/envs/myenv/bin/gunicorn wsgi:app --config gunicorn_config.py --bind 0.0.0.0:$PORT
     envVars:
       - key: PORT
         value: 10000
       - key: PYTHONPATH
         value: $HOME/miniconda/envs/myenv/lib/python3.10/site-packages
+      - key: CONDA_DEFAULT_ENV
+        value: myenv
