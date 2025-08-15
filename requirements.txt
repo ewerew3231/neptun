@@ -1,4 +1,5 @@
 --only-binary :all:
+numpy==1.23.5
 spacy==3.8.7
 flask==3.1.1
 gunicorn==23.0.0
@@ -9,16 +10,15 @@ unidecode==1.4.0
 python-dotenv==1.1.1
 openai==1.99.9
 lingua-language-detector==2.1.1
-transformers==4.55.2
-sentence-transformers==5.1.0
-scikit-learn==1.7.1
+transformers==4.31.0
+sentence-transformers==2.2.2
+scikit-learn==1.3.0
 deep-translator==1.11.4
 pytz==2025.2
 requests==2.32.4
-pandas==2.3.1
-numpy==2.3.2
-deeppavlov==1.7.0
+pandas==2.0.3
+deeppavlov==1.2.0
 tqdm==4.67.1
-torch==2.8.0
+torch==2.0.1
 geopy==2.4.1
 pytz
