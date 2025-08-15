@@ -32,8 +32,8 @@ import asyncio
 import time
 from datetime import datetime, timedelta, timezone
 from flask import Flask, render_template, jsonify, request
-from telethon import TelegramClient
-from telethon.tl.functions.messages import GetHistoryRequest
+from telegram import Bot
+from telegram.ext import Application, Updater
 import re
 import aiohttp
 import ssl
@@ -64,8 +64,7 @@ PORT = int(os.getenv('PORT', 10000))
 HOST = os.getenv('HOST', '0.0.0.0')
 
 # Настройки
-api_id = int(os.getenv('API_ID'))
-api_hash = os.getenv('API_HASH')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 channel_usernames = ['UkraineAlarmSignal', 'war_monitor', 'kpszsu', 'napramok', 'kudy_letyt', 'AerisRimor']
 # GOOGLE_MAPS_API_KEY = 'AIzaSyB7iVZpFP8-8e3-OAdawEGpp2or6PQwMgU'
 # gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
@@ -74,7 +73,9 @@ OPENCAGE_API_KEY = '30263924aa374a45a8b1b0469cb8d347'
 # Load OpenAI API key from environment variables
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-client = TelegramClient('anon', api_id, api_hash)
+# Initialize Telegram bot
+bot = Bot(token=TELEGRAM_BOT_TOKEN)
+application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 app = Flask(__name__)
 
 # Настройка логирования

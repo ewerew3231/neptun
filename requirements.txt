@@ -2,7 +2,7 @@
 spacy==3.8.7
 flask
 gunicorn
-telethon==1.40.0
+python-telegram-bot[job-queue]>=20.0
 aiohttp
 googlemaps
 unidecode
