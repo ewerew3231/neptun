@@ -18,12 +18,15 @@ OBLAST_CENTERS = {
     'николаевская': (46.9750, 31.9946),
     # ... остальные области ...
 }
-import langdetect
+from lingua import Language, LanguageDetectorBuilder
 try:
     from deeppavlov import build_model, configs
     dp_ner = build_model(configs.ner.ner_ontonotes_bert_mult, download=True)
 except Exception:
     dp_ner = None
+
+# Инициализация детектора языка
+detector = LanguageDetectorBuilder.from_languages(Language.RUSSIAN, Language.UKRAINIAN, Language.ENGLISH).build()
 import json
 import asyncio
 import time
@@ -784,7 +787,8 @@ def advanced_ner_locations(text):
     locations = {}
     lang = None
     try:
-        lang = langdetect.detect(text)
+        detected_lang = detector.detect_language_of(text)
+        lang = 'ru' if detected_lang == Language.RUSSIAN else 'uk' if detected_lang == Language.UKRAINIAN else 'en'
     except Exception:
         lang = None
     # HuggingFace NER (украинский/русский)
