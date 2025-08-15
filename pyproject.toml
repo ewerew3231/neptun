@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel>=0.41.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neptun"
+version = "1.0.0"
+description = "Telegram bot for monitoring"
+requires-python = ">=3.10.8"
+dependencies = []
