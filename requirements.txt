@@ -12,5 +12,14 @@ lingua-language-detector
 transformers
 sentence-transformers
 scikit-learn
-python-dotenv
 deep-translator
+pytz
+requests
+pandas
+numpy
+deeppavlov
+tqdm
+torch
+geopy
+langdetect
+pytz
